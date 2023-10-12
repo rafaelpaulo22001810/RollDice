@@ -44,7 +44,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun DiceWithButtonAndImage(navController: NavController, modifier: Modifier = Modifier) {
+fun DiceWithButtonAndImage(
+    navController: NavController, modifier: Modifier = Modifier
+        .fillMaxSize()
+        .wrapContentSize(
+            Alignment.Center
+        )
+) {
     var result by remember {
         mutableStateOf(1)
     }
@@ -71,7 +77,22 @@ fun DiceWithButtonAndImage(navController: NavController, modifier: Modifier = Mo
         }
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = { navController.navigate(Screens.DiceResult.route) }
+            onClick = {
+                when (result) {
+                    1 -> navController.navigate(
+                        Screens.Card.route
+                    )
+
+                    2 -> navController.navigate(
+                        Screens.DiceResult.route
+                            .replace(
+                                oldValue = "{result}",
+                                newValue = result.toString()
+                            )
+                    )
+                    else -> "a"
+                }
+            }
         ) {
             Text(text = stringResource(R.string.result_screen), fontSize = 24.sp)
         }

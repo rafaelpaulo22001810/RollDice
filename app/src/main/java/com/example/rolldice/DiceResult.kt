@@ -2,6 +2,8 @@ package com.example.rolldice
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,9 +19,17 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun DiceResult(navController: NavController, modifier: Modifier = Modifier) {
+fun DiceResult(
+    navController: NavController,
+    resultShow: Int = 1,
+    modifier: Modifier = Modifier
+        .fillMaxSize()
+        .wrapContentSize(
+            Alignment.Center
+        )
+) {
     var result by remember {
-        mutableStateOf(1)
+        mutableStateOf(resultShow)
     }
     val imageResource = when (result) {
         1 -> R.drawable.dice_1
@@ -32,7 +42,7 @@ fun DiceResult(navController: NavController, modifier: Modifier = Modifier) {
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Image(painter = painterResource(id = imageResource), contentDescription = result.toString())
 
-        Button(onClick = { navController.navigate(Screens.Roll.route)}) {
+        Button(onClick = { navController.navigate(Screens.Roll.route) }) {
             Text(text = stringResource(R.string.back), fontSize = 24.sp)
         }
     }
