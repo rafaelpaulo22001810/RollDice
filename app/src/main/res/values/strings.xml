@@ -3,4 +3,10 @@
     <string name="roll">Roll</string>
     <string name="result_screen">Result Screen</string>
     <string name="back">Back</string>
+    <string name="incrementar_1">Incrementar 1</string>
+    <string name="screen_6">Screen 6</string>
+    <string name="screen_5">Screen 5</string>
+    <string name="screen_3">Screen 3</string>
+    <string name="screen_2">Screen 2</string>
+    <string name="screen_1">Screen 1</string>
 </resources>

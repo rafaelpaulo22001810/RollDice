@@ -90,6 +90,22 @@ fun DiceWithButtonAndImage(
                                 newValue = result.toString()
                             )
                     )
+
+                    3 -> navController.navigate(
+                        Screens.Increment.route
+                            .replace(
+                                oldValue = "{result}",
+                                newValue = result.toString()
+                            )
+                    )
+
+                    4 -> navController.navigate(
+                        Screens.Pages.route.replace(
+                            oldValue = "{result}",
+                            newValue = result.toString()
+                        )
+                    )
+
                     else -> "a"
                 }
             }
