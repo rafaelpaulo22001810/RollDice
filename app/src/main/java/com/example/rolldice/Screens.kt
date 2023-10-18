@@ -6,4 +6,5 @@ sealed class Screens(val route: String){
     object Card : Screens("Card")
     object Pages : Screens("pages/{result}")
     object Increment : Screens("increment/{result}")
+    object DiceResultWithTextField : Screens("result_screen_with_text_field/{result}")
 }

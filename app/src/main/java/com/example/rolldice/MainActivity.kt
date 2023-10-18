@@ -106,6 +106,13 @@ fun DiceWithButtonAndImage(
                         )
                     )
 
+                    5 -> navController.navigate(
+                        Screens.DiceResultWithTextField.route
+                            .replace(
+                                oldValue = "{result}",
+                                newValue = result.toString()
+                            )
+                    )
                     else -> "a"
                 }
             }
