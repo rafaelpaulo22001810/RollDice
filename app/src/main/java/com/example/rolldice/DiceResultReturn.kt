@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,11 +21,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DiceResultWithTextField(
+fun Page6(
     navController: NavController,
-    resultShow: Int = 1,
+    resultShow: Int,
     modifier: Modifier = Modifier
         .fillMaxSize()
         .wrapContentSize(
@@ -48,17 +45,15 @@ fun DiceResultWithTextField(
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Image(painter = painterResource(id = imageResource), contentDescription = result.toString())
 
-        Button(onClick = { navController.navigate(Screens.Roll.route) }) {
+        Button(onClick = { result = (1..6).random() }) {
+            Text(text = stringResource(R.string.roll))
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = { navController.navigate(Screens.Roll.route.replace(
+            oldValue = "{result}",
+            newValue = result.toString()
+        )) }) {
             Text(text = stringResource(R.string.back), fontSize = 24.sp)
         }
-        Spacer(modifier = Modifier.height(20.dp))
-        TextField(value = result.toString(), onValueChange = {
-            if (it.isNotEmpty() && it.isNotBlank() && it.toIntOrNull() != null) {
-                if (it.toInt() in 1..6) {
-                    result = it.toInt()
-                }
-            }
-        })
     }
-
 }

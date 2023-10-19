@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -61,10 +60,23 @@ fun Pages(
         }) {
             Text(text = stringResource(R.string.screen_3))
         }
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {
+            navController.navigate(
+                Screens.DiceResultWithTextField.route.replace(
+                    oldValue = "{result}",
+                    newValue = result.toString()
+                )
+            )
+        }) {
             Text(text = stringResource(R.string.screen_5))
         }
-        Button(onClick = { /*TODO*/ }) {
+
+        Button(onClick = { navController.navigate(
+            Screens.DiceResultReturn.route.replace(
+                oldValue = "{result}",
+                newValue = result.toString()
+            )
+        ) }) {
             Text(text = stringResource(R.string.screen_6))
         }
     }
