@@ -1,16 +1,25 @@
-package com.example.rolldice
+package com.example.rolldice.Navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.rolldice.Card
+import com.example.rolldice.DiceResult
+import com.example.rolldice.DiceResultWithIncrement
+import com.example.rolldice.DiceResultWithTextField
+import com.example.rolldice.DiceWithButtonAndImage
+import com.example.rolldice.Page6
+import com.example.rolldice.Pages
+import com.example.rolldice.Screens
+import com.example.rolldice.ShakeDetector
 
 @Composable
-fun NavGraph(navController: NavHostController) {
+fun NavGraph(navController: NavHostController, mShakeDetector: ShakeDetector?) {
     NavHost(navController = navController, startDestination = Screens.Roll.route+ "?result={result}") {
         composable(route = Screens.Roll.route + "?result={result}") { navBackStack ->
             val resultShow: Int = navBackStack.arguments?.getString("result")?.toIntOrNull() ?: 1
-            DiceWithButtonAndImage(navController = navController, resultShow = resultShow)
+            DiceWithButtonAndImage(navController = navController, resultShow = resultShow, mShakeDetector = mShakeDetector)
         }
         composable(route = Screens.DiceResult.route + "?result={result}") { navBackStack ->
             val resultShow: Int = navBackStack.arguments?.getString("result")?.toIntOrNull() ?: 1
